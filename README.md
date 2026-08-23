@@ -22,6 +22,9 @@ notebook + video pairs in one place.
 - **[`content/resources/`](./content/resources)** — one markdown file per
   lecture, holding all the metadata (book coverage, schedule, dataset, tags,
   Vimeo id, notebook link). This is the part that ports.
+- **[`content/instructors/`](./content/instructors)** — the short "meet the
+  instructor" intro videos shown at the top of the index. A separate collection
+  from the lectures: these are people, not teaching materials.
 - **`app/`** — the site itself: a week-grouped index and a per-lecture page with
   the video, the notebook download, and an inline notebook preview.
 - **`public/previews/`** — generated nbconvert renders of each notebook.
@@ -44,6 +47,19 @@ ships with a commented-out block:
 
 Uncomment it and fill in the id. Until then the page shows a "Video coming soon"
 placeholder, so the site is publishable before every recording is uploaded.
+
+The `scripts/set-videos.mjs` helper does this for you, and looks each id up
+through Vimeo's oEmbed endpoint so it can fill in the runtime and fail loudly on
+an id that does not resolve:
+
+```bash
+node scripts/set-videos.mjs 1=https://vimeo.com/1211571372 2=https://vimeo.com/1211571577
+node scripts/set-videos.mjs --file videos.txt   # one "<lecture> <url>" per line
+```
+
+It accepts a bare id, a normal link, an unlisted link with a hash
+(`vimeo.com/<id>/<hash>`), or a full embed URL. Pass `--no-fetch` to skip the
+lookup.
 
 ## Local development
 
@@ -82,6 +98,9 @@ The content files were written against ck-teaching's existing
    ck-teaching's.
 4. Bring over `app/components/VideoEmbed.vue` and `NotebookPreview.vue`, and
    drop them into ck-teaching's `app/pages/resources/[slug].vue`.
+
+The `instructors` collection is deliberately **not** part of that port — those
+videos belong to this course, not to ck-teaching's resource catalog.
 
 Everything else — book codes, chapter values, `type`/`subtype`/`function`
 enums, the `files[]` shape, the design tokens in `app/assets/css/main.css` — is

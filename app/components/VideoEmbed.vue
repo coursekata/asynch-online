@@ -21,6 +21,11 @@ const src = computed(() => {
     autopause: '0',
     player_id: '0',
     app_id: '58479',
+    // Hide Vimeo's own title/byline overlay — the page already labels every
+    // video, and the raw upload titles carry internal course codes.
+    title: '0',
+    byline: '0',
+    portrait: '0',
   })
   // Unlisted videos with link-privacy enabled need their hash to play.
   if (props.hash) params.set('h', props.hash)
@@ -37,6 +42,7 @@ const src = computed(() => {
       frameborder="0"
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
+      loading="lazy"
       allowfullscreen
     />
   </div>

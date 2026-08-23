@@ -84,6 +84,24 @@ export default defineContentConfig({
         preview: z.string().optional(),
       }),
     }),
+    // Short "meet the instructor" intros, shown at the top of the index. Kept
+    // separate from teachingResources: these are people, not teaching
+    // materials, and they should not land in ck-teaching's resource catalog
+    // when the lectures port over.
+    instructors: defineCollection({
+      type: 'data',
+      source: 'instructors/**/*.md',
+      schema: z.object({
+        name: z.string(),
+        sequence: z.number(),
+        video: z.object({
+          provider: z.enum(['vimeo', 'youtube']).default('vimeo'),
+          id: z.string(),
+          hash: z.string().optional(),
+          duration: z.string().optional(),
+        }),
+      }),
+    }),
     pages: defineCollection({
       type: 'page',
       source: '*.md',

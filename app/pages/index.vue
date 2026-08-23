@@ -8,6 +8,10 @@ const { data: sessions } = await useAsyncData('sessions', () =>
     .all(),
 )
 
+const { data: instructors } = await useAsyncData('instructors', () =>
+  queryCollection('instructors').order('sequence', 'ASC').all(),
+)
+
 useHead({ title: site.title })
 </script>
 
@@ -22,7 +26,39 @@ useHead({ title: site.title })
       the accelerated <strong>XCD</strong> book, so the set works with either.
     </p>
 
-    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section v-if="instructors?.length" class="mt-10">
+      <h2 class="font-display text-xl text-[var(--text-primary)]">Meet the instructors</h2>
+      <p class="mt-1 max-w-3xl text-sm text-[var(--text-secondary)]">
+        The instructors you'll see throughout the lecture videos. Annie Ditta led
+        the creation of these materials, and her introduction goes into the most
+        depth about the course. Jim Stigler also appears throughout the lectures.
+      </p>
+
+      <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <li
+          v-for="p in instructors"
+          :key="p.name"
+          class="rounded-lg border border-[var(--border-light)] bg-[var(--bg-card)] p-4"
+        >
+          <VideoEmbed
+            :provider="p.video.provider"
+            :id="p.video.id"
+            :hash="p.video.hash"
+            :title="`${p.name} — introduction`"
+          />
+          <div class="mt-3 flex items-baseline justify-between gap-2">
+            <p class="font-display text-[var(--text-primary)]">{{ p.name }}</p>
+            <span v-if="p.video.duration" class="font-mono text-xs text-[var(--text-tertiary)]">
+              {{ p.video.duration }}
+            </span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <h2 class="mt-12 font-display text-xl text-[var(--text-primary)]">Lectures</h2>
+
+    <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <li v-for="s in sessions" :key="s.path">
         <NuxtLink
           :to="s.path"
