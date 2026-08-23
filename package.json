@@ -1,0 +1,25 @@
+{
+  "name": "asynch-online",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "node scripts/build-previews.mjs && nuxt generate",
+    "preview": "nuxt preview",
+    "previews": "node scripts/build-previews.mjs",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.14.0",
+    "@nuxt/ui": "^4.8.2",
+    "better-sqlite3": "^12.10.0",
+    "nuxt": "^4.4.8",
+    "tailwindcss": "^4.3.0",
+    "vue": "^3.5.38",
+    "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3"
+  }
+}
