@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2012%20-%20Vaccine%20Attitudes.ipynb
     label: 'Lecture #12 Notebook — Vaccine Attitudes'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211584527'
+  duration: '50:29'
 featured: false
 published: true
 ---

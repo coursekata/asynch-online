@@ -28,13 +28,10 @@ files:
   - src: /notebooks/Lecture%2014%20-%20Junk%20Food%20Advertising.ipynb
     label: 'Lecture #14 Notebook — Junk Food Advertising'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1212481361'
+  duration: '1:04:06'
 featured: false
 published: true
 ---

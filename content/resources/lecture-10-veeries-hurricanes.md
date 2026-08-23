@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2010%20-%20Veeries%20and%20Hurricanes.ipynb
     label: 'Lecture #10 Notebook — Veeries & Hurricanes'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211572662'
+  duration: '55:04'
 featured: false
 published: true
 ---

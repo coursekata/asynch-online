@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2008%20-%20Selfies.ipynb
     label: 'Lecture #8 Notebook — Selfies'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211572921'
+  duration: '52:47'
 featured: false
 published: true
 ---

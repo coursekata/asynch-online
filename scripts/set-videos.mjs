@@ -12,6 +12,9 @@
 //
 // Accepts a bare id, a vimeo.com/<id> link, a vimeo.com/<id>/<hash> unlisted
 // link, or a player.vimeo.com/video/<id>?h=<hash> embed URL. Idempotent.
+//
+// Each id is looked up through Vimeo's public oEmbed endpoint to fill in the
+// runtime and to confirm it actually resolves. Pass --no-fetch to skip that.
 
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
@@ -40,7 +43,7 @@ if (fileIdx !== -1) {
   for (const line of lines) {
     const t = line.replace(/#.*$/, '').trim()
     if (!t) continue
-    const m = t.match(/^(\d+)[\s=,]+(\S+)/)
+    const m = t.match(/^(\d+)[\s=,:]+(\S+)/)
     if (!m) throw new Error(`unparsable line: ${line}`)
     pairs.push([Number(m[1]), m[2]])
   }
@@ -64,13 +67,44 @@ for (const f of readdirSync(resourcesDir).filter((f) => f.endsWith('.md'))) {
   if (seq) bySeq.set(Number(seq[1]), p)
 }
 
+const noFetch = args.includes('--no-fetch')
+
+/** mm:ss, or h:mm:ss once past an hour. */
+function fmt(sec) {
+  const h = Math.floor(sec / 3600)
+  const m = Math.floor((sec % 3600) / 60)
+  const s = sec % 60
+  return h
+    ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+    : `${m}:${String(s).padStart(2, '0')}`
+}
+
+async function lookup(id) {
+  if (noFetch) return {}
+  try {
+    const r = await fetch(
+      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`https://vimeo.com/${id}`)}`,
+    )
+    if (!r.ok) return { error: `HTTP ${r.status}` }
+    const d = await r.json()
+    return { duration: d.duration ? fmt(d.duration) : undefined, title: d.title }
+  } catch (e) {
+    return { error: e.message }
+  }
+}
+
 for (const [seq, ref] of pairs) {
   const p = bySeq.get(seq)
   if (!p) { console.warn(`  ! no lecture ${seq}`); continue }
 
   const { id, hash } = parseRef(ref)
+  const { duration, title, error } = await lookup(id)
+  if (error) console.warn(`  ! lecture ${seq}: could not reach Vimeo (${error})`)
+
   const block =
-    `video:\n  provider: vimeo\n  id: '${id}'` + (hash ? `\n  hash: '${hash}'` : '')
+    `video:\n  provider: vimeo\n  id: '${id}'` +
+    (hash ? `\n  hash: '${hash}'` : '') +
+    (duration ? `\n  duration: '${duration}'` : '')
 
   let md = readFileSync(p, 'utf8')
   if (/^video:\n(?:  .*\n)*/m.test(md)) {
@@ -84,5 +118,9 @@ for (const [seq, ref] of pairs) {
       : md.replace(/^(---\n[\s\S]*?)^---$/m, `$1${block}\n---`)
   }
   writeFileSync(p, md)
-  console.log(`  ✓ lecture ${seq} → ${id}${hash ? ` (h=${hash})` : ''}`)
+  console.log(
+    `  ✓ lecture ${seq} → ${id}` +
+      (duration ? ` · ${duration}` : '') +
+      (title ? ` · ${title}` : ''),
+  )
 }

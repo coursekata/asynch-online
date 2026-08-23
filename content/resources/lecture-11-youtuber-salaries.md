@@ -28,13 +28,10 @@ files:
   - src: /notebooks/Lecture%2011%20-%20YouTuber%20Salaries.ipynb
     label: 'Lecture #11 Notebook — YouTuber Salaries'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211572552'
+  duration: '54:48'
 featured: false
 published: true
 ---

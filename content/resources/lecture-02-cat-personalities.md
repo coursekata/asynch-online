@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2002%20-%20Cat%20Personalities.ipynb
     label: 'Lecture #2 Notebook — Cat Personalities'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211571577'
+  duration: '30:46'
 featured: false
 published: true
 ---

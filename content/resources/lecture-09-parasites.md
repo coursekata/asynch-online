@@ -28,13 +28,10 @@ files:
   - src: /notebooks/Lecture%2009%20-%20Parasites.ipynb
     label: 'Lecture #9 Notebook — Parasites'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211584529'
+  duration: '54:26'
 featured: false
 published: true
 ---

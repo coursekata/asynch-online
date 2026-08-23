@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2016%20-%20Home%20Sports%20Games.ipynb
     label: 'Lecture #16 Notebook — Home Sports Games'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1217459262'
+  duration: '55:47'
 featured: false
 published: true
 ---

@@ -32,7 +32,10 @@ useHead({ title: site.title })
             <span class="rounded bg-[var(--ck-primary-light)] px-2 py-0.5 font-mono text-[var(--ck-primary)]">
               Lecture {{ s.sequence }}
             </span>
-            <span v-if="!s.video?.id" class="ml-auto text-[var(--text-tertiary)]">no video yet</span>
+            <span v-if="s.video?.duration" class="ml-auto font-mono text-[var(--text-tertiary)]">
+              {{ s.video.duration }}
+            </span>
+            <span v-else-if="!s.video?.id" class="ml-auto text-[var(--text-tertiary)]">no video yet</span>
           </div>
 
           <h2 class="mt-3 font-display text-lg leading-snug text-[var(--text-primary)]">{{ s.title }}</h2>

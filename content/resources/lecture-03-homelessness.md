@@ -27,13 +27,10 @@ files:
   - src: /notebooks/Lecture%2003%20-%20Homelessness.ipynb
     label: 'Lecture #3 Notebook — Explaining Variation in State Homelessness'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211571897'
+  duration: '58:42'
 featured: false
 published: true
 ---

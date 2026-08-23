@@ -28,13 +28,10 @@ files:
   - src: /notebooks/Lecture%2005%20-%20Respect.ipynb
     label: 'Lecture #5 Notebook — Respect'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1211572625'
+  duration: '1:12:54'
 featured: false
 published: true
 ---

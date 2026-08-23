@@ -59,7 +59,12 @@ const next = computed(() =>
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[3fr_2fr]">
       <section>
-        <h2 class="mb-3 font-display text-xl">Video</h2>
+        <h2 class="mb-3 flex items-baseline gap-3 font-display text-xl">
+          Video
+          <span v-if="item.video?.duration" class="font-mono text-sm font-normal text-[var(--text-tertiary)]">
+            {{ item.video.duration }}
+          </span>
+        </h2>
         <VideoEmbed
           v-if="item.video?.id"
           :provider="item.video.provider"

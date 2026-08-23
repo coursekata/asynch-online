@@ -30,6 +30,7 @@ files:
 video:
   provider: vimeo
   id: '1211571372'
+  duration: '41:38'
 featured: false
 published: true
 ---

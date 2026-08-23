@@ -28,13 +28,10 @@ files:
   - src: /notebooks/Lecture%2015%20-%20Wealth%20%28Feeling%20Rich%20and%20Acting%20Rude%29.ipynb
     label: 'Lecture #15 Notebook — Wealth: Feeling Rich & Acting Rude'
     role: student
-# Paste the Vimeo id here to switch this lecture's video on. Until then the
-# page shows a "Video coming soon" placeholder.
-# video:
-#   provider: vimeo
-#   id: '123456789'
-#   hash: ''          # only if the unlisted-link privacy setting requires one
-#   duration: '12:04'
+video:
+  provider: vimeo
+  id: '1212725835'
+  duration: '52:30'
 featured: false
 published: true
 ---
